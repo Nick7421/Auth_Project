@@ -6,7 +6,17 @@ const router = express.Router();
  * Get all of the items on the shelf
  */
 router.get('/', (req, res) => {
-    res.sendStatus(200); // For testing only, can be removed
+    if(req.isAuthenticated()){
+        pool.query(`SELECT * FROM "item" WHERE id = $1`, [req.user.id])
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('Error in GET routes');
+            res.sendStatus(500);
+        });
+    } else {
+    res.sendStatus(403); // For testing only, can be removed
+    }
 });
 
 
