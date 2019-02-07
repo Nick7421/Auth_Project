@@ -6,6 +6,7 @@ const router = express.Router();
  * Get all of the items on the shelf
  */
 router.get('/', (req, res) => {
+    console.log('got here', req.user);
     if(req.isAuthenticated()){
         pool.query(`SELECT * FROM "item" WHERE id = $1`, [req.user.id])
         .then((result) => {
