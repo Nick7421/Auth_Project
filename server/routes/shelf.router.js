@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const userStrategy = require('../strategies/user.strategy');
 
 /**
  * Get all of the items on the shelf
@@ -14,8 +15,15 @@ router.get('/', (req, res) => {
 /**
  * Add an item for the logged in user to the shelf
  */
-router.post('/', (req, res) => {
-
+router.post('/',  (req, res) => {
+    const newItem=req.body;
+    const queryText = `INSERT INTO "item" ("description", "image_url", "person_id")
+                        VALUES ($1, $2, $3)`
+    pool.query(queryText, [newItem.description, newItem.image_url, newItem.person_id])
+    .then((response)=> { 
+        res.sendStatus(201);
+        console.log(`error in post ${error}`);
+    }).catch((error)=> {next(err); })
 });
 
 
