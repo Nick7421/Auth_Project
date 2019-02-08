@@ -33,7 +33,7 @@ class ShelfForm extends Component {
   state = {
     description:'',
     imageUrl:''
-  }
+  };
 
 
   handleURLChange = event => {
@@ -42,12 +42,11 @@ class ShelfForm extends Component {
     });
 
 
-handleDescriptionChange = event => {
+  handleDescriptionChange = event => {
     this.setState({
         description: event.target.value,
     });
-};
-handleAddItem = () => {
+  handleAddItem = () => {
   axios({
     method: 'POST',
     url: '/api/shelf',
@@ -55,10 +54,9 @@ handleAddItem = () => {
   }).then((response) =>{
       //Where should we go after submission?
   });
+  };
 
-}
 
-};
   render() {
     const { classes } = this.props;
     return (
