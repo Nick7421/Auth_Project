@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ShelfForm from './ShelfForm';
+
 
 class ShelfPage extends Component {
 
@@ -7,6 +9,7 @@ class ShelfPage extends Component {
         return (
             <div>
                 <h1>shelf</h1>
+                <ShelfForm />
             </div>
         )
     }
